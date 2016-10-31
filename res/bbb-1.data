@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="UTF-8"/>
+        <title>--</title>
+        <script language="javascript" src="http://fupan.9hlh.com/nltrade/js/libs/jquery/jquery.js"></script>
+        <script language="javascript">
+
+
+            $(document).ready(function () {
+
+
+
+
+
+
+
+            });
+
+
+
+
+
+            function run(id, dt)
+            {
+
+
+                $.ajax({
+                    type: "GET",
+                    url: "http://fupan.9hlh.com/nltrade/gendan/update.php?id=3&signal=" + dt,
+                    async: false,
+                    cache: false,
+                    dataType : "jsonp",
+                    jsonpCallback : "success_jsonpCallback",
+                    success: function (notice) {
+
+                    }
+                });
+                $("#comment" + id).html($("#comment" + id).html() + "-ok");
+            }
+
+
+        </script>
+
+
+    </head>
+
+    <body>
+
+
+
+    <h1> <a href="aaa.html">Lines</a> </h1>
+<hr>
+
+
+        <p style="text-align:center;" >
+
+
+
+        </p>
+
+
+
+
+
+        <p style="text-align:left;">
+            <span style="line-height:1.5;">
+                <hr />
+                <table style="width:100%;" cellpadding="6" cellspacing="0" border="2" bordercolor="#666666">
+                    <tbody>
+                        <tr>
+                            <td style="text-align:center;">
+                                ID
+                            </td>
+
+
+
+                            <td style="text-align:center;">
+                                Time
+                            </td>
+                            <td style="text-align:center;">
+                                LOTS
+                            </td>
+                            <td style="text-align:center;">
+                                Profits
+                            </td>
+                            <td style="text-align:center;">
+                                Comments
+                            </td>
+                        </tr>

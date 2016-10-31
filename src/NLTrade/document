@@ -1,0 +1,95 @@
+﻿开发文档 
+
+-----------------------------
+
+开发调试模式 : 
+根目录/config/...为配置文件 
+
+
+config/load.cfg为启动配置文件 
+optimize=OFF   //是否开启优化 . 开启后,保证该目录下有op.txt文件,开启优化时必须把allsymbol设为OFF ,将生产runOP.txt
+allsymbol=OFF  //是否复盘所有货币  ,如果为ON 确保currentsymbol配置正确
+currentsymbol=data/EURGBP.min  //这是数据路径,如果allsymbol=ON ,该参数无效
+realtime=OFF   //是否实时.OFF是历史数据复盘,ON是历史数据后,程序等待数据进入.
+WebUpload=OFF  //网络连接开关,OFF情况下,不上传任何数据
+debug=ON      //是否是调试模式,OFF是运行模式,生成run.sh ,ON是调试模式,不生成run.sh
+classname=NLTrade.Strategy.SBW1565.SBW1565    //類名
+args=1,2,3,4,5    //參數 
+
+
+
+
+op.txt为优化配置参数 
+每排一个参数,
+1,10,1 从1开始,10结束,每隔1跳一格
+1,50,2 从1开始,每隔2跳一格
+
+
+
+
+
+
+-------------------------
+1,新建一个类,继承AStrategy 
+
+2,声明全局变量 
+
+Config cfg;#读取配置文件
+int mainFrame;#从配置文件中获取当前复盘框架 
+final static String otherFrame = "1,5,15,30,60";  //需要同时载入的框架
+
+3,在onInit()中实例化指标.
+/*
+
+h1 = kl.getH1();
+m15 = kl.getM15();
+m15_h = new MovingV(30, OHLCType.HIGH, m15);
+m15_l = new MovingV(30, OHLCType.LOW, m15);
+h1_5 = new MovingV(5, OHLCType.CLOSE, h1);
+h1_20 = new MovingV(20, OHLCType.CLOSE, h1);
+h1_60 = new MovingV(60, OHLCType.CLOSE, h1);
+m15_20 = new MovingV(20, OHLCType.CLOSE, m15);
+m15_60 = new MovingV(60, OHLCType.CLOSE, m15);
+highest = new Highest(50, OHLCType.HIGH, m15);
+lowest = new Lowest(50, OHLCType.LOW, m15);
+trend = new Trend(15, 65, 50, OHLCType.CLOSE, h1);
+*/
+4,在onCal(Tick t)中计算指标
+/*
+D1MV_H.cal(kl.getD1().get(0).getVolumn() == 0);
+D1MV_L.cal(kl.getD1().get(0).getVolumn() == 0);
+l.cal(kl.getCurrentFrame(mainFrame).get(0).getVolumn() == 0);
+h.cal(kl.getCurrentFrame(mainFrame).get(0).getVolumn() == 0);
+if (D1MV_H.getValue().size() > 10) {
+    daybofu = D1MV_H.getValue().get(0) - D1MV_L.getValue().get(0);
+}
+*/
+
+5,在onTick 中 进行计算   ct是内置对象
+/*
+if (isbuy) {
+if (lowest.getValue().get(0) > 0) {
+    ct.Fan(TradeType.BUY, t, symbol, 0.1, lowest.getValue().get(0) - (isjpy ? 0.03 : 0.0003), t.getPrice() * 2 - lowest.getValue().get(0), 0, comment);
+}
+
+} else {
+if (highest.getValue().get(0) > 0) {
+    ct.Fan(TradeType.SELL, t, symbol, 0.1, highest.getValue().get(0) + (isjpy ? 0.03 : 0.0003), t.getPrice() * 2 - highest.getValue().get(0), 0, comment);
+}
+}
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8"/>
+	<title>EURUSD</title>
+<script type="text/javascript" src="http://fupan.9hlh.com/nltrade/fupan/jquery-1.9.1.js"></script>
+<script type="text/javascript" src="http://fupan.9hlh.com/nltrade/fupan/exporting.js"></script>
+<script type="text/javascript" src="http://fupan.9hlh.com/nltrade/fupan/highcharts.js"></script>
+
+
+<script type="text/javascript">
+	$(function () {
+
+
+    $('#container').highcharts({
+        title: {
+            text: 'Result',
+            x: -20 //center
+        },
+        subtitle: {
+            text: 'EURUSD',
+            x: -20
+        },
+        xAxis: {
+            categories: [

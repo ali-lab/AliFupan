@@ -1,0 +1,17 @@
+]
+        }]
+    });
+
+});
+</script>
+
+</head>
+<body>
+
+<h1> <a href="bbb.html">Trades History</a> </h1>
+<hr>
+
+<div id="container" style="min-width: 310px; height: 800px; margin: 0 auto"></div>
+
+</body>
+</html>
